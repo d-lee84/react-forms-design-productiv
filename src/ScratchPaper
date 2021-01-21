@@ -1,0 +1,52 @@
+App -> Productiv -> {ToDoList, TopToDo, ToDoForm}
+
+ToDoList -> ToDoItem 
+TopToDo -> ToDoItem
+
+ToDoItem -> {Presentation format || ToDoForm}
+
+
+Productiv: 
+- State: 
+    - todos = [{id, title, description, priority}, ...]
+- Prop:
+    - maxPriority: 3 || []
+- Event:
+    - Generate editToDo event 
+    - Generate addTodo event 
+    - Generate deleteToDo event
+
+ToDoList: 
+- State:
+- Prop:
+    - todos = [{id, title, description, priority}, ...]
+- Event:
+
+TopToDo: 
+- Prop: topTodo = {id, title, description, priority}
+
+ToDoItem: 
+- State:
+    - isEdit = true || false
+- Prop:
+    - todo = {id, title, description, priority}
+    - canEdit = true || false
+    - editToDo: function passed from the Productiv to edit a todo
+    - deleteToDo: function passed form Productiv to edit a todo
+- Event: 
+    - deleteToDo
+    - handleEditClick: gets to the todo form after someone clicks edit
+    - handleEdit: gets to the presentation form after submission of edit
+
+ToDoForm: 
+- State:
+    - formData: {title, description, priority}
+- Prop:
+    - actionTodo:
+        - addTodo: function passed from Productiv to add a new todo
+        OR
+        - editTodo: function passed form Productiv to edit a todo
+- Event:
+    - handleChange
+    - handleSubmit
+

@@ -13,6 +13,7 @@ import React, { useState } from "react";
  */
 
 function TodoForm({initialFormData = {title: "", description: "", priority: 1}, handleSave}) {
+  // Comment: can spread initialFormData to make a copy 
   const [ formData, setFormData ] = useState(initialFormData);
 
   /** Update form input. */

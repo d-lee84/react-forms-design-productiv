@@ -77,6 +77,8 @@ function TodoApp({ initialTodos = [] }) {
       </section>)
     : null;
 
+  localStorage.setItem("todos", JSON.stringify(todos));
+
   return (
     <main className="TodoApp">
       <div className="row">

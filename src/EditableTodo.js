@@ -8,13 +8,15 @@ import TodoForm from "./TodoForm";
  * - todo
  * - update(): fn to call to update a todo
  * - remove(): fn to call to remove a todo
+ * - toggleCompleted(): fn to call to update 
+ *    the completed property of a todo
  * State
  * - isEditing: Boolean to indicate wheather to show form or todo item
  *
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo({ todo, update, remove }) {
+function EditableTodo({ todo, update, remove, toggleCompleted }) {
   const [isEditing, setIsEditing] = useState(false);
 
   /** Toggle if this is being edited */
@@ -49,7 +51,7 @@ function EditableTodo({ todo, update, remove }) {
             Del
         </button>
         </div>
-        <Todo todo={todo}/>
+        <Todo todo={todo} toggleCompleted={toggleCompleted}/>
       </div>);
 
   return (

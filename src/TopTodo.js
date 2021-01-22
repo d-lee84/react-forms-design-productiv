@@ -12,10 +12,17 @@ import Todo from "./Todo";
 
 function TopTodo({todos}) {
   // lowest-priority # is the highest priority
-  let top = todos.reduce(
-      (acc, cur) => cur.priority < acc.priority ? cur : acc, todos[0]);
-
-  return <Todo todo={top} />;
+  let uncompletedTodos = todos.filter(t => !t.completed);
+  let top = uncompletedTodos.reduce(
+      (acc, cur) => cur.priority < acc.priority ? cur : acc, uncompletedTodos[0]);
+  
+  let todo = (top === undefined) 
+    ? <p>No top todo!</p>
+    : <Todo todo={top} />;
+  
+  return (<div>
+    {todo}
+  </div>)
 }
 
 export default TopTodo;

@@ -34,7 +34,21 @@ function TodoApp({ initialTodos = [] }) {
         if (todo.id === updatedTodo.id) {
           return updatedTodo;
         } else {
-          return { ...todo };
+          return {...todo};
+        }
+      })
+    });
+  }
+
+  /** update the completed property of todo with id */
+  function toggleCompleted(id) {
+    setTodos(todos => {
+      return todos.map(todo => {
+        // comment: could be a ternary
+        if (todo.id === id) {
+          return {...todo, completed: !todo.completed};
+        } else {
+          return {...todo};
         }
       })
     });
@@ -47,14 +61,19 @@ function TodoApp({ initialTodos = [] }) {
     ));
   }
 
+
   let editableTodoList = (todos.length !== 0)
-    ? <EditableTodoList todos={todos} update={update} remove={remove}/>
+    ? <EditableTodoList 
+        todos={todos} 
+        update={update} 
+        remove={remove} 
+        toggleCompleted={toggleCompleted}/>
     : <span className="text-muted">You have no todos.</span>;
 
   let topTodo = (todos.length !== 0)
     ? (<section className="mb-4">
-      <h3>Top Todo</h3>
-      <TopTodo todos={todos} update={update} remove={remove} />
+        <h3>Top Todo</h3>
+        <TopTodo todos={todos} update={update} remove={remove} />
       </section>)
     : null;
 
